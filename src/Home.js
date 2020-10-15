@@ -1,7 +1,7 @@
 import React from "react";
 
-import Header from "./Header";
-import Products from "./features/products/products.view";
+import Header from "./components/header/Header";
+import Products from "./components/products/Products.view";
 
 function Home() {
   return (

@@ -43,9 +43,9 @@ const Header = (props) => {
                 className="stroke-current h-6 w-6"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
                 <circle cx="9" cy="21" r="2"></circle>
                 <circle cx="20" cy="21" r="2"></circle>

@@ -1,17 +1,7 @@
 import React, { useState, useEffect } from "react";
-
 import axios from "axios";
 
-const Card = (props) => {
-  return (
-    <div className="px-4 p-2 hover:bg-blue-100">
-      <div className="text-sm">{props.title}</div>
-      <div className="text-sm">{props.image}</div>
-      <div className="text-sm">{props.price}</div>
-      <div className="text-sm">{props.description}</div>
-    </div>
-  );
-};
+import Card from "./Card";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
