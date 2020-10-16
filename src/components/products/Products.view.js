@@ -15,9 +15,9 @@ const Products = () => {
   }, []);
 
   return (
-      <div className="md:flex content-center flex-wrap -mx-2 p-3 bg-grey rounded shadow-lg">
+      <div className="sm:flex flex-wrap -mx-4 p-3">
         {products.map((product) => (
-          <div key={product.id} className="md:flex md:w-1/2 lg:w-1/4 px-2 py-2">
+          <div key={product.id} className="sm:flex sm:w-1/2 md:w-1/3 lg:w-1/4 px-2 py-2">
             <Card {...product} />
           </div>
         ))}

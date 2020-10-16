@@ -7,13 +7,11 @@ function Home() {
   return (
     <>
       <Header />
-      <main className="max-w-6xl mx-auto px-4 mb-8">
-        <div className="bg-blue-lightest px-4 py-8 text-grey-darker font-thin leading-normal font-thin font-serif text-lg">
-          <h1 className="text-center border-b-2 border-dotted font-thin border-grey mb-6 pb-4">
-            Responsive Equal Height Flexbox Grid with Column Spacing
-          </h1>
-          <Products />
-        </div>
+      <main className="max-w-6xl mx-auto px-4 py-8 mb-8">
+        <p className="text-center border-b-2 border-dotted font-thin border-grey mb-6 pb-4 leading-normal font-thin font-serif text-lg">
+          Responsive Equal Height Flexbox Grid with Column Spacing
+        </p>
+        <Products />
       </main>
     </>
   );

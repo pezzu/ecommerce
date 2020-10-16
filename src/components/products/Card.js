@@ -2,7 +2,7 @@ import React from "react";
 
 const Card = (props) => {
   return (
-    <div className="md:flex-1 bg-white shadow p-3 rounded lg:w-64">
+    <div className="sm:flex-1 bg-white shadow-lg p-3 rounded-lg">
       <div
         style={{ backgroundImage: `url(${props.image})` }}
         className="bg-cover bg-center bg-gray-300 h-48 rounded"
