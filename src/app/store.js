@@ -4,6 +4,7 @@ import thunk from "redux-thunk";
 
 import currency from "../features/currency/currency.slice";
 import sorting from "../features/sorting/sorting.slice";
+import shoppingCart from "../features/shopping-cart/shoppingCart.slice";
 
 const composeFunc =
   process.env.NODE_ENV === "production" ? compose : composeWithDevTools;
@@ -11,6 +12,7 @@ const composeFunc =
 const rootReducer = combineReducers({
   currency,
   sorting,
+  shoppingCart,
 });
 
 const middleware = [thunk];

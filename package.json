@@ -17,9 +17,9 @@
   "scripts": {
     "build:style": "tailwindcss build src/styles/index.css -o src/styles/tailwind.css",
     "build": "yarn run build:style && react-scripts build",
-    "start": "node server/server.js",
+    "start": "node src/server/server.js",
     "client": "react-scripts start",
-    "server": "nodemon --watch server server/server.js",
+    "server": "nodemon --watch src/server src/server/server.js",
     "dev": "yarn run build:style && concurrently --kill-others-on-fail \"yarn:server\" \"yarn:client\"",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

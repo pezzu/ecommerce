@@ -9,9 +9,9 @@ const SORT_BY_NAME = "sort/by_name";
 export default (state = initialState, action) => {
   switch (action.type) {
     case SORT_BY_NAME:
-      return {...state, sortBy: "name", ascending: !state.ascending }
+      return { sortBy: "name", ascending: !state.ascending };
     case SORT_BY_PRICE:
-      return {...state, sortBy: "price", ascending: !state.ascending }
+      return { sortBy: "price", ascending: !state.ascending };
     default:
       return { ...state };
   }

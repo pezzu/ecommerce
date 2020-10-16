@@ -7,6 +7,7 @@ import { sortByName, sortByPrice } from "../../features/sorting/sorting.slice";
 
 const Header = () => {
   const currency = useSelector((store) => store.currency);
+  const cart = useSelector((store) => store.shoppingCart);
   // const sorting = useSelector((store) => store.sorting);
   const dispatch = useDispatch();
 
@@ -71,13 +72,13 @@ const Header = () => {
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
               </svg>
               <div id="order-count" className="px-1">
-                5
+                {cart.items.length}
               </div>
             </div>
           </Link>
         </div>
         <div className="font-semibold text-xl text-white mx-4">
-          {currency.sign} 97.50
+          {currency.sign} {(cart.items.reduce((a, c) => a + c.price, 0) * currency.rate).toFixed(2)}
         </div>
       </div>
     </nav>
