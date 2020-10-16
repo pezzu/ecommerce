@@ -1,8 +1,10 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { addToShoppingCart } from "../../features/shopping-cart/shoppingCart.slice";
 
 const Card = (props) => {
   const currency = useSelector((store) => store.currency);
+  const dispatch = useDispatch();
 
   return (
     <div className="sm:flex-1 bg-white shadow-lg p-3 rounded-lg">
@@ -20,7 +22,10 @@ const Card = (props) => {
       </div>
 
       <div className="mt-6 flex justify-between">
-        <button className="rounded shadow-md flex items-center shadow bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">
+        <button
+          className="rounded shadow-md flex items-center shadow bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+          onClick={() => dispatch(addToShoppingCart(props))}
+        >
           Order
         </button>
         <div>
