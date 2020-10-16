@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { changeCurrency } from "../../features/currency/currency.slice";
+import { sortByName, sortByPrice } from "../../features/sorting/sorting.slice";
 
 const Header = () => {
   const currency = useSelector((store) => store.currency);
-  const dispatch = useDispatch()
+  // const sorting = useSelector((store) => store.sorting);
+  const dispatch = useDispatch();
 
   return (
     <nav className="flex items-center justify-between flex-wrap bg-gray-800 p-3">
@@ -21,12 +23,14 @@ const Header = () => {
           <button
             id="sort-price"
             className="px-2 py-1 border rounded text-blue-200 border-gray-800 hover:text-white hover:border-white"
+            onClick={() => dispatch(sortByPrice())}
           >
             Price
           </button>
           <button
             id="sort-name"
             className="px-2 py-1 border rounded text-blue-200 border-gray-800 hover:text-white hover:border-white"
+            onClick={() => dispatch(sortByName())}
           >
             Name
           </button>
