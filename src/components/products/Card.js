@@ -1,6 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const Card = (props) => {
+  const currency = useSelector((store) => store.currency);
+
   return (
     <div className="sm:flex-1 bg-white shadow-lg p-3 rounded-lg">
       <div
@@ -21,7 +24,9 @@ const Card = (props) => {
           Order
         </button>
         <div>
-          <p className="text-3xl text-gray-900">${props.price.toFixed(2)}</p>
+          <p className="text-3xl text-gray-900">
+            {currency.sign} {(props.price * currency.rate).toFixed(2)}
+          </p>
         </div>
       </div>
     </div>

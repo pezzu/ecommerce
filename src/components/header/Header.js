@@ -1,7 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
-const Header = (props) => {
+import { changeCurrency } from "../../features/currency/currency.reducer";
+
+const Header = () => {
+  const currency = useSelector((store) => store.currency);
+  const dispatch = useDispatch()
+
   return (
     <nav className="flex items-center justify-between flex-wrap bg-gray-800 p-3">
       <div className="mr-6">
@@ -26,13 +32,22 @@ const Header = (props) => {
           </button>
         </div>
         <div className="flex mx-4">
-          <button className="px-2 py-1 border rounded text-blue-200 border-gray-800 hover:text-white hover:border-white">
+          <button
+            className="px-2 py-1 border rounded text-blue-200 border-gray-800 hover:text-white hover:border-white"
+            onClick={() => dispatch(changeCurrency("USD"))}
+          >
             USD
           </button>
-          <button className="px-2 py-1 border rounded text-blue-200 border-gray-800 hover:text-white hover:border-white">
+          <button
+            className="px-2 py-1 border rounded text-blue-200 border-gray-800 hover:text-white hover:border-white"
+            onClick={() => dispatch(changeCurrency("EUR"))}
+          >
             EUR
           </button>
-          <button className="px-2 py-1 border rounded text-blue-200 border-gray-800 hover:text-white hover:border-white">
+          <button
+            className="px-2 py-1 border rounded text-blue-200 border-gray-800 hover:text-white hover:border-white"
+            onClick={() => dispatch(changeCurrency("CAD"))}
+          >
             CAD
           </button>
         </div>
@@ -57,7 +72,9 @@ const Header = (props) => {
             </div>
           </Link>
         </div>
-        <div className="font-semibold text-xl text-white mx-4">$97.50</div>
+        <div className="font-semibold text-xl text-white mx-4">
+          {currency.sign} 97.50
+        </div>
       </div>
     </nav>
   );
