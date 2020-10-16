@@ -2,7 +2,7 @@ import { applyMiddleware, createStore, combineReducers, compose } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from 'redux-thunk'
 
-import currency from "../features/currency/currency.reducer";
+import currency from "../features/currency/currency.slice";
 
 const composeFunc =
   process.env.NODE_ENV === "production" ? compose : composeWithDevTools;

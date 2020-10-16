@@ -12,5 +12,5 @@ function routes() {
 module.exports = { routes };
 
 async function getProducts(req, res) {
-  res.send(JSON.stringify(products.getProducts()));
+  res.json(products.getProducts());
 }

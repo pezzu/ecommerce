@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-import { changeCurrency } from "../../features/currency/currency.reducer";
+import { changeCurrency } from "../../features/currency/currency.slice";
 
 const Header = () => {
   const currency = useSelector((store) => store.currency);

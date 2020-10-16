@@ -26,11 +26,11 @@ export default (state = initialState, action) => {
 export function changeCurrency(name) {
   return (dispatch) => {
     axios
-      .get("https://api.exchangeratesapi.io/latest?base=USD")
+      .get("api/exchangerates")
       .then(({ data }) => {
         dispatch({
           type: CHANGE_CURRENCY,
-          payload: { name: name, sign: signs[name], rate: data.rates[name] },
+          payload: { name: name, sign: signs[name], rate: data[name] },
         });
       });
   };
