@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Home from "./Home";
+import Basket from "./Basket";
 import store from "./app/store";
 
 const Root = () => {
@@ -13,6 +14,9 @@ const Root = () => {
         <Switch>
           <Route exact path="/">
             <Home />
+          </Route>
+          <Route path="/basket">
+            <Basket />
           </Route>
         </Switch>
       </Router>
