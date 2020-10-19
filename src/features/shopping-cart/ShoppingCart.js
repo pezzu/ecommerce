@@ -37,7 +37,10 @@ const ShoppingCart = () => {
             return <CartItem key={item.id} {...item} />;
           })}
 
-          <Link to="/" className="flex font-semibold text-blue-600 text-sm mt-10">
+          <Link
+            to="/"
+            className="flex font-semibold text-blue-600 text-sm mt-10"
+          >
             <svg
               className="fill-current mr-2 text-blue-600 w-4"
               viewBox="0 0 448 512"
@@ -57,10 +60,7 @@ const ShoppingCart = () => {
               Items {cart.items.length}
             </span>
             <span className="font-semibold text-sm">
-              {(
-                cart.items.reduce((a, c) => a + c.price, 0) * currency.rate
-              ).toFixed(2)}{" "}
-              {currency.sign}
+              {(cart.cost * currency.rate).toFixed()} {currency.sign}
             </span>
           </div>
           <div>
@@ -92,10 +92,7 @@ const ShoppingCart = () => {
             <div className="flex font-semibold justify-between py-6 text-sm uppercase">
               <span>Total cost</span>
               <span>
-                {currency.sign}{" "}
-                {(
-                  cart.items.reduce((a, c) => a + c.price, 0) * currency.rate
-                ).toFixed(2)}
+                {currency.sign} {(cart.cost * currency.rate).toFixed(2)}
               </span>
             </div>
             <button className="bg-blue-500 font-semibold hover:bg-blue-600 py-3 text-white uppercase w-full rounded shadow-md">

@@ -78,7 +78,7 @@ const Header = () => {
           </Link>
         </div>
         <div className="font-semibold text-xl text-white mx-4">
-          {currency.sign} {(cart.items.reduce((a, c) => a + c.price, 0) * currency.rate).toFixed(2)}
+          {currency.sign} {(cart.cost * currency.rate).toFixed(2)}
         </div>
       </div>
     </nav>
