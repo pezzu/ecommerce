@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addToShoppingCart } from "../../features/shopping-cart/shoppingCart.slice";
+import { addToShoppingCart } from "../shopping-cart/shoppingCart.slice";
 
 const Card = (props) => {
   const currency = useSelector((store) => store.currency);

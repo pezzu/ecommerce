@@ -3,8 +3,8 @@ import { Provider } from "react-redux";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Home from "./Home";
-import Basket from "./Basket";
+import Home from "./pages/Home";
+import Basket from "./pages/Basket";
 import store from "./app/store";
 
 const Root = () => {
