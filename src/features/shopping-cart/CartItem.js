@@ -14,12 +14,16 @@ const CartItem = (props) => {
   return (
     <div className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
       <div className="flex w-2/5">
-        <div className="w-20">
+        <div className="product__image w-20">
           <img className="h-24" src={props.image} alt="Thumbnail" />
         </div>
         <div className="flex flex-col justify-between ml-4 flex-grow">
-          <span className="font-bold text-gray-900 text-lg">{props.title}</span>
-          <span className="text-gray-700 text-sm">{props.description}</span>
+          <span className="product__title font-bold text-gray-900 text-lg">
+            {props.title}
+          </span>
+          <span className="product__description text-gray-700 text-sm">
+            {props.description}
+          </span>
           <div>
             <button
               onClick={() => dispatch(removeAllFromShoppingCart(props))}
@@ -31,7 +35,10 @@ const CartItem = (props) => {
         </div>
       </div>
       <div className="flex justify-center w-1/5">
-        <button onClick={() => dispatch(removeFromShoppingCart(props))}>
+        <button
+          onClick={() => dispatch(removeFromShoppingCart(props))}
+          className="product__remove"
+        >
           <svg className="fill-current text-gray-600 w-3" viewBox="0 0 448 512">
             <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
           </svg>
@@ -44,8 +51,10 @@ const CartItem = (props) => {
         </button>
       </div>
       <span className="text-center w-1/5 text-2xl text-gray-900">
-        {currency.sign}
-        {(props.price * currency.rate).toFixed(2)}
+        <span className="currency">{currency.sign}</span>
+        <span className="product__price">
+          {(props.price * currency.rate).toFixed(2)}
+        </span>
       </span>
       <span className="text-center w-1/5 text-2xl text-gray-900">
         {currency.sign}

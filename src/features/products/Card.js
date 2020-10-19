@@ -7,16 +7,16 @@ const Card = (props) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="sm:flex-1 bg-white shadow-lg p-3 rounded-lg">
+    <div className="card sm:flex-1 bg-white shadow-lg p-3 rounded-lg">
       <div
         style={{ backgroundImage: `url(${props.image})` }}
-        className="bg-cover bg-center bg-gray-300 h-48 rounded"
+        className="card__image bg-cover bg-center bg-gray-300 h-48 rounded"
       ></div>
       <div className="mt-6">
-        <p className="text-lg font-bold tracking-wide text-gray-900 mb-2">
+        <p className="card__title text-lg font-bold tracking-wide text-gray-900 mb-2">
           {props.title}
         </p>
-        <p className="text-sm text-gray-700 font-hairline">
+        <p className="card__description text-sm text-gray-700 font-hairline">
           {props.description}
         </p>
       </div>
@@ -30,7 +30,10 @@ const Card = (props) => {
         </button>
         <div>
           <p className="text-2xl text-gray-900">
-            {currency.sign} {(props.price * currency.rate).toFixed(2)}
+            <span className="currency">{currency.sign}</span>
+            <span className="card__price">
+              {(props.price * currency.rate).toFixed(2)}
+            </span>
           </p>
         </div>
       </div>
