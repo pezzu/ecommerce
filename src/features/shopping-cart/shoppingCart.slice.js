@@ -1,6 +1,9 @@
+import { Map } from "immutable";
+
 const initialState = {
-  items: [],
-  cost: 0,
+  items: Map(),
+  totalAmount: 0,
+  totalCost: 0,
 };
 
 const ADD_ITEM = "shopping-cart/add";
@@ -8,53 +11,44 @@ const REMOVE_ITEM = "shopping-cart/remove";
 const REMOVE_ALL_ITEMS = "shopping-cart/remove-all-items";
 
 export default (state = initialState, action) => {
-  const currentIndex = state.items.findIndex(
-    (item) => item.id === action.payload.id
-  );
-  const currentAmount =
-    currentIndex === -1 ? 0 : state.items[currentIndex].amount;
-  const items = [...state.items];
+  const currentAmount = ('payload' in action)? state.items.getIn([action.payload.id, "amount"], 0) : 0;
 
   switch (action.type) {
     case ADD_ITEM:
-      if (currentIndex === -1) {
-        return {
-          items: [...state.items, { ...action.payload, amount: 1 }],
-          cost: state.cost + action.payload.price,
-        };
-      } else {
-        items[currentIndex] = {
-          ...items[currentIndex],
-          amount: currentAmount + 1,
-        };
-        return {
-          items,
-          cost: state.cost + action.payload.price,
-        };
-      }
-
-    case REMOVE_ITEM:
-      if (currentIndex === -1) return state;
-
-      if (currentAmount > 1) {
-        items[currentIndex] = {
-          ...items[currentIndex],
-          amount: currentAmount - 1,
-        };
-      } else {
-        items.splice(currentIndex, 1);
-      }
       return {
-        items,
-        cost: state.cost - action.payload.price,
+        items: state.items.set(action.payload.id, {
+          ...action.payload,
+          amount: currentAmount + 1,
+        }),
+        totalAmount: state.totalAmount + 1,
+        totalCost: state.totalCost + action.payload.price,
       };
 
-    case REMOVE_ALL_ITEMS:
-      if (currentIndex === -1) return state;
+    case REMOVE_ITEM:
+      if (currentAmount > 1) {
+        return {
+          items: state.items.setIn(
+            [action.payload.id, "amount"],
+            currentAmount - 1
+          ),
+          totalAmount: state.totalAmount - 1,
+          totalCost: state.totalCost - action.payload.price,
+        };
+      } else if (currentAmount === 1) {
+        return {
+          items: state.items.remove(action.payload.id),
+          totalAmount: state.totalAmount - 1,
+          totalCost: state.totalCost - action.payload.price,
+        };
+      } else {
+        return state;
+      }
 
+    case REMOVE_ALL_ITEMS:
       return {
-        items: state.items.filter((item) => item.id !== action.payload.id),
-        cost: state.cost - currentAmount * action.payload.price,
+        items: state.items.remove(action.payload.id),
+        totalAmount: state.totalAmount - currentAmount,
+        totalCost: state.totalCost - action.payload.price * currentAmount,
       };
 
     default:

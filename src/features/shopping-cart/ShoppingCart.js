@@ -15,7 +15,7 @@ const ShoppingCart = () => {
           <div className="flex justify-between border-b pb-8">
             <h1 className="font-semibold text-2xl">Shopping Cart</h1>
             <h2 className="font-semibold text-2xl">
-              <span className="product__amout">{cart.items.length}</span> Items
+              <span className="product__amout">{cart.totalAmount}</span> Items
             </h2>
           </div>
           <div className="flex mt-10 mb-5">
@@ -57,11 +57,11 @@ const ShoppingCart = () => {
           </h1>
           <div className="flex justify-between mt-10 mb-5">
             <span className="font-semibold text-sm uppercase">
-              Items {cart.items.length}
+              Items {cart.totalAmount}
             </span>
             <span className="font-semibold text-sm">
               <span className="product__total_price">
-                {(cart.cost * currency.rate).toFixed()}
+                {(cart.totalCost * currency.rate).toFixed()}
               </span>{" "}
               {currency.sign}
             </span>
@@ -95,7 +95,7 @@ const ShoppingCart = () => {
             <div className="flex font-semibold justify-between py-6 text-sm uppercase">
               <span>Total cost</span>
               <span>
-                {currency.sign} <span id="total-amount">{(cart.cost * currency.rate).toFixed(2)}</span>
+                {currency.sign} <span id="total-amount">{(cart.totalCost * currency.rate).toFixed(2)}</span>
               </span>
             </div>
             <button className="bg-blue-500 font-semibold hover:bg-blue-600 py-3 text-white uppercase w-full rounded shadow-md">
