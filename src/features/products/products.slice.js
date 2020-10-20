@@ -37,7 +37,7 @@ export const productsLoadingFailure = (error) => {
 export const productsLoadingStart = () => (dispatch) => {
   dispatch({ type: LOADING_START });
   axios
-    .get("/api/products")
+    .get("/api/v1/products")
     .then(({ data }) => dispatch(productsLoadingSuccess(data)))
     .catch((err) => dispatch(productsLoadingFailure(err)));
 };

@@ -26,7 +26,7 @@ export default (state = initialState, action) => {
 export function changeCurrency(name) {
   return (dispatch) => {
     axios
-      .get("api/exchangerates")
+      .get("api/v1/exchangerates")
       .then(({ data }) => {
         dispatch({
           type: CHANGE_CURRENCY,

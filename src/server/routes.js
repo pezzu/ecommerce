@@ -6,8 +6,8 @@ const rates = require("../features/currency/currency.routes");
 function routes() {
   const router = express.Router();
 
-  router.use("/products", products.routes());
-  router.use("/exchangerates", rates.routes());
+  router.use("/v1/products", products.routes());
+  router.use("/v1/exchangerates", rates.routes());
 
   return router;
 }
