@@ -33,7 +33,7 @@ const ShoppingCart = () => {
             </h3>
           </div>
 
-          {cart.items.map((item) => {
+          {[...cart.items.values()].map((item) => {
             return <CartItem key={item.id} {...item} />;
           })}
 
@@ -95,7 +95,10 @@ const ShoppingCart = () => {
             <div className="flex font-semibold justify-between py-6 text-sm uppercase">
               <span>Total cost</span>
               <span>
-                {currency.sign} <span id="total-amount">{(cart.totalCost * currency.rate).toFixed(2)}</span>
+                {currency.sign}{" "}
+                <span id="total-amount">
+                  {(cart.totalCost * currency.rate).toFixed(2)}
+                </span>
               </span>
             </div>
             <button className="bg-blue-500 font-semibold hover:bg-blue-600 py-3 text-white uppercase w-full rounded shadow-md">
