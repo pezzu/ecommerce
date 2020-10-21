@@ -1,25 +1,21 @@
 import React from "react";
 import { Provider } from "react-redux";
-
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
+import { ConnectedRouter } from "connected-react-router";
 
 import Home from "./pages/Home";
 import Basket from "./pages/Basket";
-import store from "./app/store";
+import store, { history } from "./app/store";
 
 const Root = () => {
   return (
     <Provider store={store}>
-      <Router>
+      <ConnectedRouter history={history}>
         <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/basket">
-            <Basket />
-          </Route>
+          <Route exact path="/" render={() => <Home />} />
+          <Route path="/basket" render={() => <Basket />} />
         </Switch>
-      </Router>
+      </ConnectedRouter>
     </Provider>
   );
 };
