@@ -6,9 +6,9 @@ const initialState = {
   totalCost: 0,
 };
 
-const ADD_ITEM = "shopping-cart/add";
-const REMOVE_ITEM = "shopping-cart/remove";
-const REMOVE_ALL_ITEMS = "shopping-cart/remove-all-items";
+export const ADD_ITEM = "shopping-cart/add";
+export const REMOVE_ITEM = "shopping-cart/remove";
+export const REMOVE_ALL_ITEMS = "shopping-cart/remove-all-items";
 
 export default (state = initialState, action) => {
   const currentAmount = ('payload' in action)? state.items.getIn([action.payload.id, "amount"], 0) : 0;

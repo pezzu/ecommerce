@@ -2,6 +2,8 @@ import { applyMiddleware, createStore, combineReducers, compose } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
+import logger from "../features/logs/logger"
+
 import products from "../features/products/products.slice";
 import currency from "../features/currency/currency.slice";
 import sorting from "../features/sorting/sorting.slice";
@@ -17,7 +19,7 @@ const rootReducer = combineReducers({
   shoppingCart,
 });
 
-const middleware = [thunk];
+const middleware = [thunk, logger];
 
 const initialState = {};
 const store = createStore(

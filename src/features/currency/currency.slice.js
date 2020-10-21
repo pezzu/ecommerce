@@ -12,7 +12,7 @@ const initialState = {
   rate: 1.0,
 };
 
-const CHANGE_CURRENCY = "currency/change";
+export const CHANGE_CURRENCY = "currency/change";
 
 export default (state = initialState, action) => {
   switch (action.type) {

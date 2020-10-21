@@ -3,8 +3,8 @@ const initialState = {
   ascending: true,
 };
 
-const SORT_BY_PRICE = "sort/by_price";
-const SORT_BY_NAME = "sort/by_name";
+export const SORT_BY_PRICE = "sort/by_price";
+export const SORT_BY_NAME = "sort/by_name";
 
 export default (state = initialState, action) => {
   switch (action.type) {
