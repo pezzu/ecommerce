@@ -3,6 +3,7 @@ import axios from "axios";
 import { CHANGE_CURRENCY } from "../currency/currency.slice";
 import { ADD_ITEM, REMOVE_ITEM } from "../shopping-cart/shoppingCart.slice";
 import { SORT_BY_NAME, SORT_BY_PRICE } from "../sorting/sorting.slice";
+import { LOCATION_CHANGE } from "connected-react-router";
 
 const logger = (store) => (next) => (action) => {
   const state = store.getState();
@@ -32,6 +33,13 @@ const logger = (store) => (next) => (action) => {
     case SORT_BY_PRICE:
       log = `Sort by price`;
       axios.post("/api/v1/logs", { action: action.type, log });
+      break;
+
+    case LOCATION_CHANGE:
+      if (state.router.location.pathname !== action.payload.location.pathname) {
+        log = `Navigate to ${action.payload.location.pathname} page`;
+        axios.post("/api/v1/logs", { action: action.type, log });
+      }
       break;
 
     default:

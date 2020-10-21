@@ -12,7 +12,7 @@ import sorting from "../features/sorting/sorting.slice";
 import shoppingCart from "../features/shopping-cart/shoppingCart.slice";
 
 const composeFunc =
-  process.env.NODE_ENV === "production" ? compose : composeWithDevTools;
+  process.env.NODE_ENV === "production" ? compose : composeWithDevTools({ trace: true, traceLimit: 25 });
 
 export const history = createBrowserHistory();
 
