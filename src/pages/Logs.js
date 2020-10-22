@@ -1,20 +1,20 @@
 import React from "react";
 
 import Header from "../components/header/Header";
-import Products from "../features/products/Products";
+import LogList from "../features/logs/LogsList";
 
-function Home() {
+const Logs = () => {
   return (
     <>
       <Header />
       <main className="max-w-6xl mx-auto px-4 py-8 mb-8">
         <p className="text-center border-b-2 border-dotted font-thin border-grey mb-6 pb-4 leading-normal font-thin font-serif text-lg">
-          Lets see what we got here
+          Audit Trail
         </p>
-        <Products />
+        <LogList />
       </main>
     </>
   );
-}
+};
 
-export default Home;
+export default Logs;

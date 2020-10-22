@@ -6,19 +6,19 @@ const initialState = {
   error: null,
 };
 
-const LOADING_START = "product-list/loading-start";
-const LOADING_SUCCESS = "product-list/loading-succes";
-const LOADING_FAILURE = "product-list/loading-failure";
+const FETCH_START = "product-list/loading-start";
+const FETCH_SUCCESS = "product-list/loading-succes";
+const FETCH_FAILURE = "product-list/loading-failure";
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case LOADING_START:
+    case FETCH_START:
       return { ...state, loading: true, error: null };
 
-    case LOADING_SUCCESS:
+    case FETCH_SUCCESS:
       return { items: action.payload, loading: false, error: null };
 
-    case LOADING_FAILURE:
+    case FETCH_FAILURE:
       return { items: [], loading: false, error: action.payload };
 
     default:
@@ -27,15 +27,15 @@ export default (state = initialState, action) => {
 };
 
 export const productsLoadingSuccess = (products) => {
-  return { type: LOADING_SUCCESS, payload: products };
+  return { type: FETCH_SUCCESS, payload: products };
 };
 
 export const productsLoadingFailure = (error) => {
-  return { type: LOADING_FAILURE, payload: error };
+  return { type: FETCH_FAILURE, payload: error };
 };
 
 export const productsLoadingStart = () => (dispatch) => {
-  dispatch({ type: LOADING_START });
+  dispatch({ type: FETCH_START });
   axios
     .get("/api/v1/products")
     .then(({ data }) => dispatch(productsLoadingSuccess(data)))
