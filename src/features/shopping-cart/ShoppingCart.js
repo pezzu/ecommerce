@@ -61,7 +61,7 @@ const ShoppingCart = () => {
             </span>
             <span className="font-semibold text-sm">
               <span className="product__total_price">
-                {(cart.totalCost * currency.rate).toFixed()}
+                {(cart.totalCost * currency.rate).toFixed(2)}
               </span>{" "}
               {currency.sign}
             </span>

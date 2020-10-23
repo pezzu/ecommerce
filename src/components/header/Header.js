@@ -51,9 +51,9 @@ const Header = () => {
           </button>
           <button
             className="px-2 py-1 border rounded text-blue-200 border-gray-800 hover:text-white hover:border-white"
-            onClick={() => dispatch(changeCurrency("CAD"))}
+            onClick={() => dispatch(changeCurrency("GBP"))}
           >
-            CAD
+            GBP
           </button>
         </div>
         <div className="flex mx-4">

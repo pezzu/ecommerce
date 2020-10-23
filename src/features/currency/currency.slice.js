@@ -3,7 +3,7 @@ import axios from "axios";
 const signs = {
   USD: "$",
   EUR: "€",
-  CAD: "C$",
+  GBP: "£",
 };
 
 const initialState = {
