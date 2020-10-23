@@ -1,7 +1,7 @@
 import React from "react";
 
 import Header from "../components/header/Header";
-import Products from "../features/products/Products";
+import ProductList from "../features/products/ProductList";
 
 function Home() {
   return (
@@ -11,7 +11,7 @@ function Home() {
         <p className="text-center border-b-2 border-dotted font-thin border-grey mb-6 pb-4 leading-normal font-thin font-serif text-lg">
           Lets see what we got here
         </p>
-        <Products />
+        <ProductList />
       </main>
     </>
   );

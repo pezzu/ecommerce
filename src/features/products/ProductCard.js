@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addToShoppingCart } from "../shopping-cart/shoppingCart.slice";
 
-const Card = (props) => {
+const ProductCard = (props) => {
   const currency = useSelector((store) => store.currency);
   const cart = useSelector((store) => store.shoppingCart);
   const dispatch = useDispatch();
@@ -45,4 +45,4 @@ const Card = (props) => {
   );
 };
 
-export default Card;
+export default ProductCard;

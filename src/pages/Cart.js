@@ -3,7 +3,7 @@ import React from "react";
 import Header from "../components/header/Header";
 import ShoppingCart from "../features/shopping-cart/ShoppingCart";
 
-const Basket = () => {
+const Cart = () => {
   return (
     <>
       <Header />
@@ -12,4 +12,4 @@ const Basket = () => {
   );
 };
 
-export default Basket;
+export default Cart;
