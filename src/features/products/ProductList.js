@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { productsLoadingStart } from "./products.slice";
 
+import LoadingSpinner from "../../components/loading-spinner/Spinner";
 import ProductCard from "./ProductCard";
 
 const ProductList = () => {
@@ -25,9 +26,7 @@ const ProductList = () => {
     }
   };
 
-  if(products.loading) {
-    return <h1>Loading stuff</h1>
-  }
+  if (products.loading) return <LoadingSpinner />;
 
   return (
     <div className="sm:flex flex-wrap -mx-4 p-3">

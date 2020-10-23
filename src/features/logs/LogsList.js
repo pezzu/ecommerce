@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { fetchLogsStart, deleteLogs } from "./logger.slice";
 
+import LoadingSpinner from "../../components/loading-spinner/Spinner";
+
 const AuditRecord = (props) => {
   return (
     <div className="flex hover:bg-gray-200 m-1">
@@ -21,9 +23,7 @@ const LogsList = () => {
     dispatch(fetchLogsStart());
   }, [dispatch]);
 
-  if (logs.loading) {
-    return <div>Loading stuff</div>;
-  }
+  if (logs.loading) return <LoadingSpinner />;
 
   return (
     <div>

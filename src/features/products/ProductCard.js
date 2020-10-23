@@ -4,10 +4,10 @@ import { addToShoppingCart } from "../shopping-cart/shoppingCart.slice";
 
 const ProductCard = (props) => {
   const currency = useSelector((store) => store.currency);
-  const cart = useSelector((store) => store.shoppingCart);
+  // const cart = useSelector((store) => store.shoppingCart);
   const dispatch = useDispatch();
 
-  const orderedAmmount = cart.items.getIn([props.id, "amount"], 0);
+  // const orderedAmmount = cart.items.getIn([props.id, "amount"], 0);
 
   return (
     <div className="card sm:flex-1 bg-white shadow-lg p-3 rounded-lg">
