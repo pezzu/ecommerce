@@ -5,10 +5,10 @@ import { fetchLogsStart, deleteLogs } from "./logger.slice";
 
 const AuditRecord = (props) => {
   return (
-    <div>
-      <span>{props.timestamp}</span>
-      <span>{props.action}</span>
-      <span>{props.log}</span>
+    <div className="flex hover:bg-gray-200 m-1">
+      <span className="w-1/6 text-sm">{(new Date(props.timestamp)).toLocaleString()}</span>
+      <span className="w-2/6 text-sm">{props.action}</span>
+      <span className="w-3/6 font-semibold">{props.log}</span>
     </div>
   );
 };
@@ -30,6 +30,7 @@ const LogsList = () => {
       {logs.items.map((log) => (
         <AuditRecord key={log.timestamp} {...log} />
       ))}
+      <div className="border-b pb-4 mb-4"></div>
       <button
         className="bg-red-500 hover:bg-red-600 px-5 py-2 text-sm text-white uppercase rounded shadow-md"
         onClick={() => dispatch(deleteLogs())}
