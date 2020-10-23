@@ -31,7 +31,7 @@ const ProductCard = (props) => {
         >
           Order
         </button>
-        {orderedAmmount > 0 && <div className="card__product-amount">{orderedAmmount}</div>}
+        {/* {orderedAmmount > 0 && <div className="card__product-amount">{orderedAmmount}</div>} */}
         <div>
           <p className="text-2xl text-gray-900">
             <span className="currency">{currency.sign}</span>
