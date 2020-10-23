@@ -57,7 +57,7 @@ const Header = () => {
           </button>
         </div>
         <div className="flex mx-4">
-          <Link to="/basket">
+          <Link to="/cart">
             <div className="flex items-center px-2 py-1 border rounded text-blue-200 border-gray-800 hover:text-white hover:border-white">
               <svg
                 className="stroke-current h-6 w-6"
