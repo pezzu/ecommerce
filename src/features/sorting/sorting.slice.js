@@ -9,18 +9,18 @@ export const SORT_BY_NAME = "sort/by_name";
 export default (state = initialState, action) => {
   switch (action.type) {
     case SORT_BY_NAME:
-      return { sortBy: "name", ascending: !state.ascending };
+      return { sortBy: "name", ascending: action.payload };
     case SORT_BY_PRICE:
-      return { sortBy: "price", ascending: !state.ascending };
+      return { sortBy: "price", ascending: action.payload };
     default:
       return { ...state };
   }
 };
 
-export function sortByPrice() {
-  return { type: SORT_BY_PRICE };
-}
+export const sortByPrice = (ascending = true) => {
+  return { type: SORT_BY_PRICE, payload: ascending };
+};
 
-export function sortByName() {
-  return { type: SORT_BY_NAME };
-}
+export const sortByName = (ascending = true) => {
+  return { type: SORT_BY_NAME, payload: ascending };
+};
