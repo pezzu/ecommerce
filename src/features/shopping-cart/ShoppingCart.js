@@ -2,11 +2,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+import {
+  selectTotalAmount,
+  selectTotalCost,
+  selectItems,
+} from "./shoppingCart.slice";
+
 import CartItem from "./CartItem";
 
 const ShoppingCart = () => {
-  const cart = useSelector((store) => store.shoppingCart);
   const currency = useSelector((store) => store.currency);
+
+  const items = useSelector(selectItems);
+  const totalAmount = useSelector(selectTotalAmount);
+  const totalCost = useSelector(selectTotalCost);
 
   return (
     <div className="container mx-auto mt-10">
@@ -15,7 +24,7 @@ const ShoppingCart = () => {
           <div className="flex justify-between border-b pb-8">
             <h1 className="font-semibold text-2xl">Shopping Cart</h1>
             <h2 className="font-semibold text-2xl">
-              <span className="product__amout">{cart.totalAmount}</span> Items
+              <span className="product__amout">{totalAmount}</span> Items
             </h2>
           </div>
           <div className="flex mt-10 mb-5">
@@ -33,7 +42,7 @@ const ShoppingCart = () => {
             </h3>
           </div>
 
-          {[...cart.items.values()].map((item) => {
+          {items.map((item) => {
             return <CartItem key={item.id} {...item} />;
           })}
 
@@ -57,11 +66,11 @@ const ShoppingCart = () => {
           </h1>
           <div className="flex justify-between mt-10 mb-5">
             <span className="font-semibold text-sm uppercase">
-              Items {cart.totalAmount}
+              Items {totalAmount}
             </span>
             <span className="font-semibold text-sm">
               <span className="product__total_price">
-                {(cart.totalCost * currency.rate).toFixed(2)}
+                {(totalCost * currency.rate).toFixed(2)}
               </span>{" "}
               {currency.sign}
             </span>
@@ -97,7 +106,7 @@ const ShoppingCart = () => {
               <span>
                 {currency.sign}{" "}
                 <span id="total-amount">
-                  {(cart.totalCost * currency.rate).toFixed(2)}
+                  {(totalCost * currency.rate).toFixed(2)}
                 </span>
               </span>
             </div>

@@ -4,11 +4,12 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { changeCurrency } from "../../features/currency/currency.slice";
 import { sortByName, sortByPrice } from "../../features/sorting/sorting.slice";
+import { selectTotalAmount, selectTotalCost } from '../../features/shopping-cart/shoppingCart.slice';
 
 const Header = () => {
   const currency = useSelector((store) => store.currency);
-  const cart = useSelector((store) => store.shoppingCart);
-  // const sorting = useSelector((store) => store.sorting);
+  const totalAmount = useSelector(selectTotalAmount);
+  const totalCost = useSelector(selectTotalCost);
   const dispatch = useDispatch();
 
   return (
@@ -72,13 +73,13 @@ const Header = () => {
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
               </svg>
               <div id="order-count" className="px-1">
-                {cart.totalAmount}
+                {totalAmount}
               </div>
             </div>
           </Link>
         </div>
         <div className="font-semibold text-xl text-white mx-4">
-          {currency.sign} {(cart.totalCost * currency.rate).toFixed(2)}
+          {currency.sign} {(totalCost * currency.rate).toFixed(2)}
         </div>
       </div>
     </nav>

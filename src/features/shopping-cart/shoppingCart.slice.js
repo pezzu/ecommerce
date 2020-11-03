@@ -1,54 +1,53 @@
-import { Map } from "immutable";
-
-const initialState = {
-  items: Map(),
-  totalAmount: 0,
-  totalCost: 0,
-};
+import { selectProductById } from "../products/products.slice";
 
 export const ADD_ITEM = "shopping-cart/add";
 export const REMOVE_ITEM = "shopping-cart/remove";
 export const REMOVE_ALL_ITEMS = "shopping-cart/remove-all-items";
 
-export default (state = initialState, action) => {
-  const currentAmount = ('payload' in action)? state.items.getIn([action.payload.id, "amount"], 0) : 0;
+const initialState = {
+  quantityById: {},
+};
 
+const increaseQuantityById = (state, id) => {
+  return { ...state, [id]: (state[id] || 0) + 1 };
+};
+
+const decreaseQuantityById = (state, id) => {
+  const { [id]: current, ...rest } = state;
+  if (current > 1) {
+    return { ...rest, [id]: current - 1 };
+  } else {
+    return { ...rest };
+  }
+};
+
+const dropAllById = (state, id) => {
+  // eslint-disable-next-line
+  const { [id]: _, ...rest } = state;
+  return { ...rest };
+};
+
+export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_ITEM:
       return {
-        items: state.items.set(action.payload.id, {
-          ...action.payload,
-          amount: currentAmount + 1,
-        }),
-        totalAmount: state.totalAmount + 1,
-        totalCost: state.totalCost + action.payload.price,
+        quantityById: increaseQuantityById(
+          state.quantityById,
+          action.payload.id
+        ),
       };
 
     case REMOVE_ITEM:
-      if (currentAmount > 1) {
-        return {
-          items: state.items.setIn(
-            [action.payload.id, "amount"],
-            currentAmount - 1
-          ),
-          totalAmount: state.totalAmount - 1,
-          totalCost: state.totalCost - action.payload.price,
-        };
-      } else if (currentAmount === 1) {
-        return {
-          items: state.items.remove(action.payload.id),
-          totalAmount: state.totalAmount - 1,
-          totalCost: state.totalCost - action.payload.price,
-        };
-      } else {
-        return state;
-      }
+      return {
+        quantityById: decreaseQuantityById(
+          state.quantityById,
+          action.payload.id
+        ),
+      };
 
     case REMOVE_ALL_ITEMS:
       return {
-        items: state.items.remove(action.payload.id),
-        totalAmount: state.totalAmount - currentAmount,
-        totalCost: state.totalCost - action.payload.price * currentAmount,
+        quantityById: dropAllById(state.quantityById, action.payload.id),
       };
 
     default:
@@ -67,3 +66,16 @@ export function removeFromShoppingCart(item) {
 export function removeAllFromShoppingCart(item) {
   return { type: REMOVE_ALL_ITEMS, payload: item };
 }
+
+export const selectTotalAmount = (state) =>
+  Object.values(state.shoppingCart.quantityById).reduce((a, c) => a + c, 0);
+
+export const selectTotalCost = (state) => {
+  return Object.entries(state.shoppingCart.quantityById)
+    .map(([id, amount]) => selectProductById(state, id).price * amount)
+    .reduce((a, c) => a + c, 0);
+}
+
+export const selectItems = (state) =>
+  Object.entries(state.shoppingCart.quantityById)
+    .map(([id, amount]) => ({ ...selectProductById(state, id), amount }))

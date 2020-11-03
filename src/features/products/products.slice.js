@@ -75,3 +75,8 @@ export const productsLoadingStart = () => (dispatch) => {
     .then(({ data }) => dispatch(productsLoadingSuccess(data)))
     .catch((err) => dispatch(productsLoadingFailure(err)));
 };
+
+export const selectProductById = (state, id) => {
+  const product = state.products.items.find((item) => item.id === id);
+  return product;
+}
