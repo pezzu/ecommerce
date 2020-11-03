@@ -5,7 +5,12 @@ export const REMOVE_ITEM = "shopping-cart/remove";
 export const REMOVE_ALL_ITEMS = "shopping-cart/remove-all-items";
 
 const initialState = {
+  addedIds: [],
   quantityById: {},
+};
+
+const addById = (state, id) => {
+  return state.indexOf(id) !== -1 ? state : [...state, id];
 };
 
 const increaseQuantityById = (state, id) => {
@@ -21,7 +26,11 @@ const decreaseQuantityById = (state, id) => {
   }
 };
 
-const dropAllById = (state, id) => {
+const removeById = (state, id) => {
+  return state.filter((storedId) => storedId !== id);
+};
+
+const dropAllQuantityById = (state, id) => {
   // eslint-disable-next-line
   const { [id]: _, ...rest } = state;
   return { ...rest };
@@ -31,6 +40,7 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_ITEM:
       return {
+        addedIds: addById(state.addedIds, action.payload.id),
         quantityById: increaseQuantityById(
           state.quantityById,
           action.payload.id
@@ -38,16 +48,25 @@ export default (state = initialState, action) => {
       };
 
     case REMOVE_ITEM:
+      const newQuantityById = decreaseQuantityById(
+        state.quantityById,
+        action.payload.id
+      );
       return {
-        quantityById: decreaseQuantityById(
-          state.quantityById,
-          action.payload.id
-        ),
+        addedIds:
+          newQuantityById[action.payload.id] > 0
+            ? state.addedIds
+            : removeById(state.addedIds, action.payload.id),
+        quantityById: newQuantityById,
       };
 
     case REMOVE_ALL_ITEMS:
       return {
-        quantityById: dropAllById(state.quantityById, action.payload.id),
+        addedById: removeById(state.addedIds, action.payload.id),
+        quantityById: dropAllQuantityById(
+          state.quantityById,
+          action.payload.id
+        ),
       };
 
     default:
@@ -74,8 +93,10 @@ export const selectTotalCost = (state) => {
   return Object.entries(state.shoppingCart.quantityById)
     .map(([id, amount]) => selectProductById(state, id).price * amount)
     .reduce((a, c) => a + c, 0);
-}
+};
 
 export const selectItems = (state) =>
-  Object.entries(state.shoppingCart.quantityById)
-    .map(([id, amount]) => ({ ...selectProductById(state, id), amount }))
+  state.shoppingCart.addedIds.map((id) => ({
+    ...selectProductById(state, id),
+    amount: state.shoppingCart.quantityById[id],
+  }));
