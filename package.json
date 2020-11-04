@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^5.7.0",
     "@reduxjs/toolkit": "^1.1.0",
     "axios": "^0.20.0",
     "connected-react-router": "^6.8.0",
@@ -16,14 +17,13 @@
     "tailwindcss": "^1.9.1"
   },
   "scripts": {
-    "build:style": "tailwindcss build src/styles/index.css -o src/styles/tailwind.css",
-    "build": "yarn run build:style && react-scripts build",
+    "build": "craco build",
     "start": "node src/server/server.js",
-    "client": "react-scripts start",
+    "client": "craco start",
     "server": "nodemon --watch src/server src/server/server.js",
-    "dev": "yarn run build:style && concurrently --kill-others-on-fail \"yarn:server\" \"yarn:client\"",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "concurrently --kill-others-on-fail \"yarn:server\" \"yarn:client\"",
+    "test": "craco test",
+    "eject": "craco eject"
   },
   "eslintConfig": {
     "extends": "react-app"

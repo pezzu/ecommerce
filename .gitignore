@@ -23,7 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 debug.log
 
-src/styles/tailwind.css
-
 # Examples of styling
 templates
