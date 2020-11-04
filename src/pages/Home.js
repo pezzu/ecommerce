@@ -8,7 +8,7 @@ function Home() {
     <>
       <Header />
       <main className="max-w-6xl mx-auto px-4 py-8 mb-8">
-        <p className="text-center border-b-2 border-dotted font-thin border-grey mb-6 pb-4 leading-normal font-thin font-serif text-lg">
+        <p className="text-center border-b-2 border-dotted border-grey mb-6 pb-4 leading-normal font-thin font-serif text-3xl">
           Lets see what we got here
         </p>
         <ProductList />
