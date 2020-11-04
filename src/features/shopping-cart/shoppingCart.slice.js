@@ -62,7 +62,7 @@ export default (state = initialState, action) => {
 
     case REMOVE_ALL_ITEMS:
       return {
-        addedById: removeById(state.addedIds, action.payload.id),
+        addedIds: removeById(state.addedIds, action.payload.id),
         quantityById: dropAllQuantityById(
           state.quantityById,
           action.payload.id
