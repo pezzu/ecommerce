@@ -13,7 +13,7 @@ export default (state = initialState, action) => {
     case SORT_BY_PRICE:
       return { sortBy: "price", ascending: action.payload };
     default:
-      return { ...state };
+      return state;
   }
 };
 
