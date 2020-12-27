@@ -4,7 +4,7 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 const Spinner = () => {
   return (
-    <div className="flex justify-center allign-center">
+    <div className="flex justify-center items-center">
       <Loader
         type="BallTriangle"
         color="#19194d"
