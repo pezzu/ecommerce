@@ -8,10 +8,12 @@ const ProductCard = (props) => {
 
   return (
     <div className="flex flex-col justify-between sm:flex-1 bg-white shadow-lg p-3 rounded-lg tracking-wide">
-      <div
-        style={{ backgroundImage: `url(${props.image})` }}
-        className="card__image bg-cover bg-center bg-gray-300 h-48 rounded"
-      ></div>
+      <img
+        src={props.image}
+        alt={props.title}
+        className="card__image h-48 rounded"
+        loading="lazy"
+      />
       <div className="mt-1">
         <p className="card__title text-lg font-bold tracking-wide text-gray-900">
           {props.title}
